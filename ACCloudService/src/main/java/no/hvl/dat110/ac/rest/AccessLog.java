@@ -18,15 +18,20 @@ public class AccessLog {
 	// TODO: add an access entry for the message and return assigned id DONE
 	public int add(String message) {
 		int id = cid.getAndIncrement();
-		AccessEntry accessEntry = new AccessEntry(id, message);
-		log.put(id, accessEntry);
+		log.put(id, new AccessEntry(id, message));
+
 		return id;
 	}
 		
 	// TODO: retrieve a specific access entry DONE
 	public AccessEntry get(int id) {
-		
-		return log.get(id);
+		AccessEntry entry = null;
+		try {
+			entry = log.get(id);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return entry;
 		
 	}
 	
@@ -39,8 +44,8 @@ public class AccessLog {
 	// TODO: JSON representation of the access log DONE
 	public String toJson () {
     	
-		String json = new Gson().toJson(log.values().toArray());
-    	
-    	return json;
+		Gson gson = new Gson();
+		
+    	return gson.toJson(log);
     }
 }
