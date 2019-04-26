@@ -1,0 +1,44 @@
+PART A link: https://www.tinkercad.com/things/g51GgM1NK1V-arduino-dat110/editel
+Code:
+
+
+  void setup(){
+  Serial.begin(9600);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(4, INPUT);
+  pinMode(3, INPUT);
+  pinMode(2, INPUT);
+}
+
+  
+void loop()
+{
+  int sensor = digitalRead(3);
+  int knapp1 = digitalRead(4);
+  int knapp2 = digitalRead(2);
+  int rLED = digitalRead(11);
+  int gLED = digitalRead(13);
+
+  
+  if(sensor == false){
+    digitalWrite(11, HIGH);
+      }else {
+    digitalWrite(11, LOW);
+      }
+  
+  if((sensor == true) && (gLED == LOW)){
+    digitalWrite(12, HIGH);
+  }else{
+    digitalWrite(12, LOW);
+  }
+  
+  if(knapp1 == HIGH){
+  	    digitalWrite(13, HIGH);
+  }else if(rLED == HIGH){
+   digitalWrite(13, LOW);
+
+      }
+      
+}
